@@ -1,0 +1,198 @@
+/*
+    Global Styles & Typography
+    -----------------------------------------------------------------------------------
+*/
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --background-light: #ecf0f1;
+    --background-dark: #34495e;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-light);
+    color: var(--secondary-color);
+}
+
+h1, h2, h3, h4 {
+    margin-top: 0;
+    line-height: 1.2;
+}
+
+/*
+    Flexbox for Navigation and Content
+    -----------------------------------------------------------------------------------
+*/
+.main-nav {
+    display: flex; /* Makes the navigation a flex container */
+    justify-content: center; /* Aligns links in the center */
+    align-items: center; /* Vertically centers the links */
+    background-color: var(--secondary-color);
+    padding: 1rem;
+}
+
+.main-nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 1.5rem; /* Space between links */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: var(--primary-color);
+}
+
+.flex-container {
+    display: flex; /* Creates a flexible row of cards */
+    flex-wrap: wrap; /* Allows cards to wrap to the next line on small screens */
+    gap: 1rem; /* Creates a consistent space between cards */
+    padding-top: 1.5rem;
+    border-top: 1px solid #bdc3c7;
+    margin-top: 1.5rem;
+}
+
+.card {
+    flex: 1 1 200px; /* Flex shorthand: grow, shrink, basis */
+    /* This makes cards flexible but gives them a preferred width of 200px */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/*
+    Grid Layout for Main Page Structure (Desktop-First)
+    -----------------------------------------------------------------------------------
+*/
+@media (min-width: 769px) {
+    body {
+        display: grid; /* Makes the body a grid container */
+        grid-template-columns: 1fr 3fr 1fr; /* Defines 3 columns: side, main, side */
+        grid-template-rows: auto 1fr auto; /* Defines 3 rows: header, main, footer */
+        grid-template-areas:
+            "header header header"
+            "nav main sidebar"
+            "footer footer footer";
+        grid-gap: 1.5rem; /* Spacing between grid items */
+        min-height: 100vh; /* Ensures the page takes full viewport height */
+    }
+
+    .site-header {
+        grid-area: header;
+        text-align: center;
+        background-color: var(--background-dark);
+        color: #fff;
+        padding: 2rem;
+    }
+
+    .main-nav {
+        grid-area: nav;
+        flex-direction: column; /* Stacks nav links vertically in desktop grid */
+        background-color: var(--secondary-color);
+        padding: 1rem 0;
+    }
+
+    .main-nav a {
+        padding: 0.5rem 1rem;
+    }
+
+    .main-content {
+        grid-area: main;
+        padding: 2rem;
+    }
+
+    .sidebar {
+        grid-area: sidebar;
+        background-color: var(--background-dark);
+        color: #fff;
+        padding: 2rem;
+    }
+
+    .site-footer {
+        grid-area: footer;
+        text-align: center;
+        background-color: var(--background-dark);
+        color: #fff;
+        padding: 1rem;
+    }
+}
+
+/*
+    Media Queries for Responsiveness
+    -----------------------------------------------------------------------------------
+*/
+
+/* Tablet Layout: 481px to 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+    body {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-areas:
+            "header header"
+            "nav nav"
+            "main sidebar"
+            "footer footer";
+        grid-gap: 1rem;
+    }
+
+    .site-header, .main-content, .sidebar, .site-footer {
+        padding: 1.5rem;
+    }
+    
+    .main-nav {
+        justify-content: space-around;
+        padding: 1rem;
+    }
+
+    .main-nav a {
+        padding: 0 1rem;
+    }
+
+    .site-header, .site-footer, .sidebar {
+        background-color: var(--background-dark);
+        color: #fff;
+    }
+}
+
+/* Mobile Layout: Up to 480px */
+@media (max-width: 480px) {
+    body {
+        display: grid;
+        grid-template-columns: 1fr; /* Single column layout */
+        grid-template-areas:
+            "header"
+            "nav"
+            "main"
+            "sidebar"
+            "footer";
+        grid-gap: 1rem;
+    }
+
+    .site-header, .main-content, .sidebar, .site-footer {
+        padding: 1rem;
+    }
+    
+    .main-nav {
+        flex-direction: column; /* Stacks nav links vertically */
+        align-items: stretch; /* Stretches links to full width */
+        padding: 0.5rem 0;
+    }
+
+    .main-nav a {
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+
+    .site-header, .site-footer, .sidebar {
+        background-color: var(--background-dark);
+        color: #fff;
+    }
+}
